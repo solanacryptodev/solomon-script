@@ -8,7 +8,7 @@ export default defineConfig({
     host: '0.0.0.0',
     hmr: {
       clientPort: 443,
-      host: 'https://workspace.philippinetower-solomonsweb.replit.dev'
+      host: '4dae44f7-b392-4d05-bd03-47e8519ec037-00-hnh3s1jgngyw.worf.replit.dev'
     }
   },
   build: {
