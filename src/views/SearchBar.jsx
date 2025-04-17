@@ -1,4 +1,5 @@
-import { createSignal, createEffect } from 'solid-js';
+import { createSignal } from 'solid-js';
+import TopicTags from './TopicTags';
 
 function SearchBar(props) {
   const [inputValue, setInputValue] = createSignal('');
@@ -18,19 +19,22 @@ function SearchBar(props) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (inputValue().trim()) {
-      props.onSearch(inputValue().trim(), translation());
+      props.homeViewModel.updateBibleTopic(inputValue().trim(), translation());
+
+      // Pass to LLM for analysis
+      // homeViewModel.updateBibleTopic(inputValue().trim(), translation());
     }
   };
   
   return (
     <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-      <h2 class="text-center text-2xl font-bold mb-4">ASK ABOUT ANY BIBLE TOPIC</h2>
+      <h2 class="text-left text-2xl font-bold mb-4">ASK ABOUT ANY BIBLE TOPIC</h2>
       
       <form onSubmit={handleSubmit} class="flex flex-col md:flex-row gap-4">
         <div class="flex-grow">
           <input
             type="text"
-            placeholder="e.g. 'trust', 'faith', 'Ezekiel's wheel'..."
+            placeholder="e.g. 'Trust', 'Faith', 'The Exodus'"
             value={inputValue()}
             onInput={(e) => setInputValue(e.target.value)}
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal"
@@ -59,6 +63,8 @@ function SearchBar(props) {
           SEARCH
         </button>
       </form>
+
+      <TopicTags onSelectTopic={props.homeViewModel.topicTagSelect} />
     </div>
   );
 }

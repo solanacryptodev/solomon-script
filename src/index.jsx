@@ -4,7 +4,5 @@ import App from './App';
 import './styles/index.css';
 
 render(() => (
-  <Router>
-    <App />
-  </Router>
+  <Router root={<App />} />
 ), document.getElementById('root'));

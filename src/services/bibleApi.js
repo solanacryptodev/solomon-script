@@ -170,5 +170,6 @@ export async function getTranslations() {
     { id: 'NLT', name: 'New Living Translation' },
     { id: 'NASB', name: 'New American Standard Bible' },
     { id: 'CSB', name: 'Christian Standard Bible' },
+    { id: 'NLT', name: 'New Living Translation' },
   ];
 }

@@ -5,7 +5,7 @@ function TopicTags(props) {
   ];
   
   return (
-    <div class="flex flex-wrap gap-2 my-4 justify-center">
+    <div class="flex flex-wrap gap-2 my-3 justify-center justify-self-start">
       {commonTopics.map(topic => (
         <button
           onClick={() => props.onSelectTopic(topic.toLowerCase())}

@@ -1,5 +1,5 @@
 import { createSignal, createEffect, Show } from 'solid-js';
-import { analyzeVerses } from '../services/deepseekApi';
+import { analyzeVerses } from '../services/deepseekApi'; // no longer needed. Old hardcoded responses. Should come from HomeViewModel
 
 function AIAnalysis(props) {
   const [analysis, setAnalysis] = createSignal('');
