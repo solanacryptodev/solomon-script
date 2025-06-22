@@ -45,7 +45,7 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
         'X-Title': 'Solomon\'s Web Bible App'
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
+        model: 'google/gemma-3-27b-it',
         messages: [
           {
             role: 'system',
