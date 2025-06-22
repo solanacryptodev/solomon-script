@@ -103,20 +103,14 @@ export class HomeViewModel implements IHomeViewModel {
             this._setIsLoading(false);
         }
     };
-          //   this._setVerses(parsedVerses); // Update the verses state
-          //   console.log("VM: Parsed Verses:", parsedVerses);
-
-        } catch (error) {
-            console.error("VM: Failed to fetch or parse Bible verses", error);
-            this._setVerses([]); // Ensure verses are empty on error
-            // Optionally set an error state signal here for the UI
-        } finally {
-            this._setIsLoading(false);
-        }
-    };
 
     public generateGeminiAnalysis = async (currentTopic: string, verseTexts: string, currentTranslation: string): Promise<string> => {
-        return await analyzeVerses(currentTopic, verseTexts, currentTranslation);
+        try {
+            return await analyzeVerses(currentTopic, verseTexts, currentTranslation);
+        } catch (error) {
+            console.error("VM: Error generating analysis:", error);
+            return "Unable to generate analysis at this time. Please try again later.";
+        }
     }
 
     /**

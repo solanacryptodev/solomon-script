@@ -10,7 +10,7 @@ function Navbar() {
             <path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 4V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          GOD'S WEB
+          SOLOMON'S WEB
         </A>
         
         <div class="flex space-x-6 items-center">
