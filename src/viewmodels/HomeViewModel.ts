@@ -89,14 +89,20 @@ export class HomeViewModel implements IHomeViewModel {
             });
             console.log(`VM: Fetched ${verses.length} verses for topic "${newBibleTopic}"`);
 
-            // Convert the Bible API response to ParsedVerse format
-            const parsedVerses: ParsedVerse[] = verses.map(verse => ({
-                reference: verse.reference,
-                text: verse.text
-            }));
+            // Ensure verses is an array and handle accordingly
+            if (verses && Array.isArray(verses)) {
+                // Convert the Bible API response to ParsedVerse format
+                const parsedVerses: ParsedVerse[] = verses.map((verse: any) => ({
+                    reference: verse.reference || 'Unknown',
+                    text: verse.text || 'No text available'
+                }));
 
-            console.log(`VM: Found ${parsedVerses.length} verses for topic "${newBibleTopic}"`);
-            this._setVerses(parsedVerses);
+                console.log(`VM: Found ${parsedVerses.length} verses for topic "${newBibleTopic}"`);
+                this._setVerses(parsedVerses);
+            } else {
+                console.error('Expected verses to be an array, got:', typeof verses, verses);
+                this._setVerses([]);
+            }
 
         } catch (error) {
             console.error("VM: Error fetching verses:", error);

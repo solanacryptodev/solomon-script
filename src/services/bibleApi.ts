@@ -56,12 +56,7 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
           },
           {
             role: 'user',
-            content: [
-              {
-                "type": "text",
-                "text": prompt
-              }
-            ]
+            content: prompt
           }
         ],
         temperature: 0.3,
@@ -75,14 +70,27 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
 
     const data = await response.json();
     const content = data.choices[0]?.message?.content;
-    console.log('api content:', content)
+    console.log('API content:', content);
     
     if (!content) {
       throw new Error('No content received from OpenRouter API');
     }
 
     // Parse the JSON response
-    // const verses = JSON.parse(content);
+    try {
+      const verses = JSON.parse(content);
+      console.log('Parsed verses:', verses);
+      
+      if (!Array.isArray(verses)) {
+        throw new Error('Invalid response format from API');
+      }
+
+      return verses;
+    } catch (parseError) {
+      console.error('Failed to parse JSON response:', content);
+      console.error('Parse error:', parseError);
+      throw new Error('Invalid JSON response from API');
+    }
     
     // if (!Array.isArray(verses)) {
     //   throw new Error('Invalid response format from API');
