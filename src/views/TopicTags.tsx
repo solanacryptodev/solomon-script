@@ -3,24 +3,18 @@ interface TopicTagsProps {
 }
 
 function TopicTags(props: TopicTagsProps) {
-  const topics = [
-    'Trust', 'Faith', 'Love', 'Hope', 'Peace', 'Joy', 'Forgiveness', 
-    'Prayer', 'Wisdom', 'Strength', 'Guidance', 'Healing', 'Grace', 'Salvation'
-  ];
+  const topics = ['LOVE', 'FAITH', 'HOPE', 'FORGIVENESS', 'SALVATION'];
 
   return (
-    <div class="mt-6">
-      <h3 class="text-sm font-semibold text-black mb-3">POPULAR TOPICS:</h3>
-      <div class="flex flex-wrap gap-2">
-        {topics.map(topic => (
-          <button
-            onClick={() => props.onSelectTopic(topic)}
-            class="bg-white text-navy px-3 py-1 rounded-full text-sm hover:bg-teal-light transition border border-gray-200"
-          >
-            {topic}
-          </button>
-        ))}
-      </div>
+    <div class="flex flex-wrap gap-3 mt-4">
+      {topics.map(topic => (
+        <button
+          onClick={() => props.onSelectTopic(topic)}
+          class="px-4 py-2 bg-gray-100 text-navy rounded-lg hover:bg-teal hover:text-white transition text-sm font-medium"
+        >
+          {topic}
+        </button>
+      ))}
     </div>
   );
 }
