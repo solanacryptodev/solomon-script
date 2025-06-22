@@ -89,20 +89,15 @@ export class HomeViewModel implements IHomeViewModel {
             });
             console.log(`VM: Fetched ${verses.length} verses for topic "${newBibleTopic}"`);
 
-            // Ensure verses is an array and handle accordingly
-            if (verses && Array.isArray(verses)) {
-                // Convert the Bible API response to ParsedVerse format
-                const parsedVerses: ParsedVerse[] = verses.map((verse: any) => ({
-                    reference: verse.reference || 'Unknown',
-                    text: verse.text || 'No text available'
-                }));
+            // Convert the Bible API response to ParsedVerse format
+            const parsedVerses: ParsedVerse[] = verses.map(verse => ({
+                reference: verse.reference,
+                text: verse.text
+            }));
 
-                console.log(`VM: Found ${parsedVerses.length} verses for topic "${newBibleTopic}"`);
-                this._setVerses(parsedVerses);
-            } else {
-                console.error('Expected verses to be an array, got:', typeof verses, verses);
-                this._setVerses([]);
-            }
+            console.log(`VM: Found ${parsedVerses.length} verses for topic "${newBibleTopic}"`);
+            this._setVerses(parsedVerses);
+            console.log('Parsed verse:', parsedVerses)
 
         } catch (error) {
             console.error("VM: Error fetching verses:", error);
@@ -114,7 +109,8 @@ export class HomeViewModel implements IHomeViewModel {
 
     public generateGeminiAnalysis = async (currentTopic: string, verseTexts: string, currentTranslation: string): Promise<string> => {
         try {
-            return await analyzeVerses(currentTopic, verseTexts, currentTranslation);
+            const analysis = await analyzeVerses(currentTopic, verseTexts, currentTranslation);
+            return this.parseAnalysisToHtml(analysis);
         } catch (error) {
             console.error("VM: Error generating analysis:", error);
             return "Unable to generate analysis at this time. Please try again later.";

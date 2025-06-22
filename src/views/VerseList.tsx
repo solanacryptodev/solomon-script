@@ -56,7 +56,7 @@ export default function VerseList (props: VerseListProps) {
                         {/* Iterate over the visibleVerses signal */}
                         <For each={visibleVerses()}>
                             {/* Assuming VerseCard takes a 'verse' prop of type ParsedVerse */}
-                            {(verse) => <VerseCard verses={verse} />}
+                            {(verse) => <VerseCard verse={verse} />}
                         </For>
                     </div>
 

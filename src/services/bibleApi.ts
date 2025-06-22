@@ -33,7 +33,7 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
   }
 
   try {
-    const prompt = `Find 5-10 relevant Bible verses about "${topic}" from the ${translation} translation. 
+    const prompt = `Return only up to 20 relevant Bible verses about "${topic}" from the ${translation} translation. 
     Return ONLY a JSON array of objects with this exact format:
     [{"reference": "BOOK CHAPTER:VERSE", "text": "exact verse text"}]
     
@@ -56,7 +56,12 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
           },
           {
             role: 'user',
-            content: prompt
+            content: [
+              {
+                "type": "text",
+                "text": prompt
+              }
+            ]
           }
         ],
         temperature: 0.3,
@@ -70,33 +75,34 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
 
     const data = await response.json();
     const content = data.choices[0]?.message?.content;
-    console.log('API content:', content);
     
     if (!content) {
       throw new Error('No content received from OpenRouter API');
     }
 
-    // Parse the JSON response
-    try {
-      const verses = JSON.parse(content);
-      console.log('Parsed verses:', verses);
-      
-      if (!Array.isArray(verses)) {
-        throw new Error('Invalid response format from API');
-      }
+    // Clean the response by removing markdown code blocks
+    const cleanedContent = content
+      .replace(/```json/g, '')  // Remove starting code block
+      .replace(/```/g, '')       // Remove ending code block
+      .trim();                   // Remove extra whitespace
 
-      return verses;
-    } catch (parseError) {
-      console.error('Failed to parse JSON response:', content);
-      console.error('Parse error:', parseError);
-      throw new Error('Invalid JSON response from API');
+    const verses = JSON.parse(cleanedContent);
+    console.log('Parsed verses:', verses);
+
+    // 1. Validate array structure
+    if (!Array.isArray(verses)) {
+      throw new Error('Invalid response format from API');
     }
-    
-    // if (!Array.isArray(verses)) {
-    //   throw new Error('Invalid response format from API');
-    // }
 
-    return content;
+    // 2. Validate object structure
+    for (const verse of verses) {
+      if (!verse.reference || !verse.text) {
+        throw new Error('Invalid verse structure: missing reference or text');
+      }
+    }
+
+    // 3. Return parsed array instead of raw content
+    return verses;
   } catch (error) {
     console.error('Error fetching verses from OpenRouter:', error);
     throw error;

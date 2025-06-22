@@ -17,7 +17,7 @@ export interface AnalysisResponse {
  * @param translation - The Bible translation used
  * @returns A promise that resolves to the analysis text
  */
-export async function analyzeVerses(topic: string, verseTexts: string, translation: string = 'NIV'): Promise<string> {
+export async function analyzeVerses(topic: string, verseTexts: string, translation: string): Promise<string> {
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
   
   if (!apiKey) {
@@ -46,7 +46,7 @@ Format your response in markdown with clear headings and bullet points for reada
         'X-Title': 'Solomon\'s Web Bible App'
       },
       body: JSON.stringify({
-        model: 'anthropic/claude-3.5-sonnet',
+        model: 'google/gemma-3-27b-it',
         messages: [
           {
             role: 'system',
@@ -78,40 +78,4 @@ Format your response in markdown with clear headings and bullet points for reada
     console.error('Error generating analysis with OpenRouter:', error);
     throw error;
   }
-}
-
-/**
- * In a production environment, this would use the actual Deepseek API
- * Example of what that implementation might look like:
- */
-async function callDeepseekApi(prompt: string): Promise<string> {
-  const response = await fetch('https://api.deepseek.com/v1/chat/completions', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json',
-      'Authorization': `Bearer ${import.meta.env.VITE_DEEPSEEK_API_KEY}`
-    },
-    body: JSON.stringify({
-      model: 'deepseek-chat',
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a biblical scholar and theologian who provides thoughtful, historically informed analysis of Scripture.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
-      temperature: 0.7,
-      max_tokens: 1000
-    })
-  });
-
-  if (!response.ok) {
-    throw new Error(`Deepseek API error: ${response.statusText}`);
-  }
-
-  const data = await response.json();
-  return data.choices[0].message.content;
 }

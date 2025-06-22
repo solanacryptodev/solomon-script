@@ -1,3 +1,6 @@
+import { render } from 'solid-js/web';
+import { Router, Route } from '@solidjs/router';
+
 function Navbar() {
   return (
     <nav class="bg-navy text-white py-4">
@@ -20,5 +23,6 @@ function Navbar() {
     </nav>
   );
 }
+
 
 export default Navbar;
