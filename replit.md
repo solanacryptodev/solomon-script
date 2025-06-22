@@ -85,7 +85,11 @@ Solomon's Web is a modern Bible exploration application that combines scripture 
 
 ## Changelog
 
-- June 22, 2025. Initial setup
+- June 22, 2025: Initial setup with SolidStart attempt
+- June 22, 2025: Converted to TypeScript with Vite + SolidJS
+- June 22, 2025: Implemented OpenRouter API integration for Bible verse search and analysis
+- June 22, 2025: Fixed vite.config.js with allowedHosts for Replit domain
+- June 22, 2025: Simplified App component for debugging rendering issues
 
 ## User Preferences
 
