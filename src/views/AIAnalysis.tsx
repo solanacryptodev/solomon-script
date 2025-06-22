@@ -20,7 +20,7 @@ const AIAnalysis: Component<AIAnalysisProps> = (props) => {
             setAnalysis(''); // Clear previous analysis
             try {
                 // Format verses for the analysis prompt
-                const verseTexts = currentVerses.map(v => `${v.title}: ${v.body}`).join('\n\n');
+                const verseTexts = currentVerses.map(v => `${v.reference}: ${v.text}`).join('\n\n');
                 // Call your specific analysis function (replace placeholder)
                 const result = await props.generateGeminiAnalysis(currentTopic, verseTexts, currentTranslation);
                 setAnalysis(result);
