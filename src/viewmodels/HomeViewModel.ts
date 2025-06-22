@@ -74,6 +74,7 @@ export class HomeViewModel implements IHomeViewModel {
      */
     public updateBibleTopic = async (newBibleTopic: string, selectedBibleVersion: string): Promise<void> => {
         if (this.isLoading()) return; // Don't run if already loading
+        console.log(`VM: updateBibleTopic() called with topic "${newBibleTopic}" and version "${selectedBibleVersion}"`);
 
         this._setIsLoading(true);
         this._setVerses([]); // Clear previous verses immediately
@@ -86,6 +87,7 @@ export class HomeViewModel implements IHomeViewModel {
                 topic: newBibleTopic, 
                 translation: selectedBibleVersion 
             });
+            console.log(`VM: Fetched ${verses.length} verses for topic "${newBibleTopic}"`);
 
             // Convert the Bible API response to ParsedVerse format
             const parsedVerses: ParsedVerse[] = verses.map(verse => ({

@@ -23,7 +23,8 @@ export interface Translation {
  * @returns A promise that resolves to an array of verse objects
  */
 export async function searchVerses({ topic, translation }: { topic: string; translation: string }): Promise<Verse[]> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
+  console.log('topic and translation:', topic, translation);
   
   if (!apiKey) {
     throw new Error('OpenRouter API key is required');

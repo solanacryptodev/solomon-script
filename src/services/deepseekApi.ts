@@ -18,7 +18,7 @@ export interface AnalysisResponse {
  * @returns A promise that resolves to the analysis text
  */
 export async function analyzeVerses(topic: string, verseTexts: string, translation: string = 'NIV'): Promise<string> {
-  const apiKey = process.env.OPENROUTER_API_KEY;
+  const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
   
   if (!apiKey) {
     throw new Error('OpenRouter API key is required');
@@ -89,7 +89,7 @@ async function callDeepseekApi(prompt: string): Promise<string> {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
-      'Authorization': `Bearer ${process.env.DEEPSEEK_API_KEY}`
+      'Authorization': `Bearer ${import.meta.env.VITE_DEEPSEEK_API_KEY}`
     },
     body: JSON.stringify({
       model: 'deepseek-chat',

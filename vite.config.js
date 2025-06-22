@@ -10,6 +10,7 @@ export default defineConfig({
   },
   define: {
     'import.meta.env.VITE_OPENROUTER_API_KEY': JSON.stringify(process.env.OPENROUTER_API_KEY),
+    'import.meta.env.VITE_DEEPSEEK_API_KEY': JSON.stringify(process.env.DEEPSEEK_API_KEY),
     global: 'globalThis',
   }
 })
