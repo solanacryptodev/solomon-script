@@ -41,7 +41,7 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin,
+        'HTTP-Referer': 'https://solomonsweb.replit.app',
         'X-Title': 'Solomon\'s Web Bible App'
       },
       body: JSON.stringify({

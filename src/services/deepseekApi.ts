@@ -42,7 +42,7 @@ Format your response in markdown with clear headings and bullet points for reada
       headers: {
         'Authorization': `Bearer ${apiKey}`,
         'Content-Type': 'application/json',
-        'HTTP-Referer': window.location.origin,
+        'HTTP-Referer': 'https://solomonsweb.replit.app',
         'X-Title': 'Solomon\'s Web Bible App'
       },
       body: JSON.stringify({
