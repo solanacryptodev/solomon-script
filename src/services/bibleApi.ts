@@ -1,3 +1,5 @@
+
+
 /**
  * Bible API Service
  * 
@@ -24,7 +26,7 @@ export interface Translation {
  */
 export async function searchVerses({ topic, translation }: { topic: string; translation: string }): Promise<Verse[]> {
   const apiKey = import.meta.env.VITE_OPENROUTER_API_KEY;
-  console.log('topic and translation:', topic, translation);
+  console.log('topic and translation:', topic, translation)
   
   if (!apiKey) {
     throw new Error('OpenRouter API key is required');
@@ -54,7 +56,12 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
           },
           {
             role: 'user',
-            content: prompt
+            content: [
+              {
+                "type": "text",
+                "text": prompt
+              }
+            ]
           }
         ],
         temperature: 0.3,
@@ -68,19 +75,20 @@ export async function searchVerses({ topic, translation }: { topic: string; tran
 
     const data = await response.json();
     const content = data.choices[0]?.message?.content;
+    console.log('api content:', content)
     
     if (!content) {
       throw new Error('No content received from OpenRouter API');
     }
 
     // Parse the JSON response
-    const verses = JSON.parse(content);
+    // const verses = JSON.parse(content);
     
-    if (!Array.isArray(verses)) {
-      throw new Error('Invalid response format from API');
-    }
+    // if (!Array.isArray(verses)) {
+    //   throw new Error('Invalid response format from API');
+    // }
 
-    return verses;
+    return content;
   } catch (error) {
     console.error('Error fetching verses from OpenRouter:', error);
     throw error;
