@@ -1,34 +1,32 @@
 import { createSignal } from 'solid-js';
 import TopicTags from './TopicTags';
+import { translations } from '../utils/interfaces';
+import { HomeViewModel } from '../viewmodels/HomeViewModel';
 
-function SearchBar(props) {
+interface SearchBarProps {
+  homeViewModel: HomeViewModel;
+}
+
+function SearchBar(props: SearchBarProps) {
   const [inputValue, setInputValue] = createSignal('');
   const [translation, setTranslation] = createSignal('NIV');
   
-  // Available Bible translations
-  const translations = [
-    { id: 'NIV', name: 'New International Version' },
-    { id: 'KJV', name: 'King James Version' },
-    { id: 'ESV', name: 'English Standard Version' },
-    { id: 'NLT', name: 'New Living Translation' },
-    { id: 'NASB', name: 'New American Standard Bible' },
-    { id: 'CSB', name: 'Christian Standard Bible' },
-  ];
-  
   // Handle form submission
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: Event) => {
     e.preventDefault();
     if (inputValue().trim()) {
       props.homeViewModel.updateBibleTopic(inputValue().trim(), translation());
-
-      // Pass to LLM for analysis
-      // homeViewModel.updateBibleTopic(inputValue().trim(), translation());
     }
   };
+
+  const handleTagSelect = (tag: string) => {
+    setInputValue(tag);
+    props.homeViewModel.updateBibleTopic(tag, translation());
+  }
   
   return (
-    <div class="bg-white rounded-lg shadow-md p-6 mb-8">
-      <h2 class="text-left text-2xl font-bold mb-4">ASK ABOUT ANY BIBLE TOPIC</h2>
+    <div class="bg-gradient-to-b from-[#D07E29] to-desert-sun rounded-lg shadow-md p-6 mb-8">
+      <h2 class="text-left text-2xl text-black font-bold mb-4">ASK ABOUT ANY BIBLE TOPIC</h2>
       
       <form onSubmit={handleSubmit} class="flex flex-col md:flex-row gap-4">
         <div class="flex-grow">
@@ -36,7 +34,7 @@ function SearchBar(props) {
             type="text"
             placeholder="e.g. 'Trust', 'Faith', 'The Exodus'"
             value={inputValue()}
-            onInput={(e) => setInputValue(e.target.value)}
+            onInput={(e) => setInputValue((e.target as HTMLInputElement).value)}
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal"
           />
         </div>
@@ -44,7 +42,7 @@ function SearchBar(props) {
         <div class="md:w-48">
           <select 
             value={translation()} 
-            onChange={(e) => setTranslation(e.target.value)}
+            onChange={(e) => setTranslation((e.target as HTMLSelectElement).value)}
             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal"
           >
             {translations.map(trans => (
@@ -55,7 +53,7 @@ function SearchBar(props) {
         
         <button 
           type="submit" 
-          class="bg-teal text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition flex items-center justify-center"
+          class="bg-gradient-to-b from-navy to-[#2E3B63] text-white py-3 px-6 rounded-lg hover:bg-opacity-90 transition flex items-center justify-center"
         >
           <svg class="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
@@ -64,7 +62,7 @@ function SearchBar(props) {
         </button>
       </form>
 
-      <TopicTags onSelectTopic={props.homeViewModel.topicTagSelect} />
+      <TopicTags onSelectTopic={handleTagSelect} />
     </div>
   );
 }

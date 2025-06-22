@@ -2,7 +2,7 @@ import { A } from '@solidjs/router';
 
 function Navbar() {
   return (
-    <nav class="bg-navy text-white py-4 shadow-md">
+    <nav class="bg-gradient-to-b from-navy to-[#2E3B63] text-white py-4 shadow-md">
       <div class="container mx-auto px-4 flex justify-between items-center">
         <A href="/" class="flex items-center text-xl font-bold">
           <svg class="w-6 h-6 mr-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -10,10 +10,10 @@ function Navbar() {
             <path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
             <path d="M12 4V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
-          SOLOMON'S WEB
+          GOD'S WEB
         </A>
         
-        <div class="flex space-x-6">
+        <div class="flex space-x-6 items-center">
           <A href="/" class="hover:text-teal-light transition" activeClass="text-teal-light">
             HOME
           </A>
@@ -22,6 +22,12 @@ function Navbar() {
           </A>
           <A href="/about" class="hover:text-teal-light transition" activeClass="text-teal-light">
             ABOUT
+          </A>
+          <A href="/about" class="hover:text-teal-light transition" activeClass="text-teal-light">
+            PRAYER CIRCLE
+          </A>
+          <A href="/join" class="bg-rose-red p-2 rounded-[10%] hover:text-teal-light transition" activeClass="bg-red-50 p-4 text-teal-light">
+            MEMBERS
           </A>
         </div>
       </div>

@@ -3,7 +3,6 @@ import SearchBar from '../views/SearchBar';
 import VerseList from '../views/VerseList';
 import AIAnalysis from '../views/AIAnalysis';
 import { HomeViewModel } from '../viewmodels/HomeViewModel';
-import React from 'react'
 
 const Home = () => {
   const homeViewModel = new HomeViewModel();
@@ -49,6 +48,7 @@ const Home = () => {
                   verses={homeViewModel.verses()} // Pass verses array
                   topic={homeViewModel.searchTopic()} // Pass searched topic
                   translation={homeViewModel.searchVersion()} // Pass searched version
+                  generateGeminiAnalysis={homeViewModel.generateGeminiAnalysis}
               />
           </Show>
       </div>

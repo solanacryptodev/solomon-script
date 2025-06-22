@@ -2,7 +2,7 @@ import { A } from '@solidjs/router';
 
 function Footer() {
   return (
-    <footer class="bg-navy text-white py-6">
+    <footer class="bg-gradient-to-b from-navy to-[#2E3B63] text-white py-6">
       <div class="container mx-auto px-4">
         <div class="flex flex-col md:flex-row justify-between items-center">
           <div class="mb-4 md:mb-0">
@@ -12,7 +12,7 @@ function Footer() {
                 <path d="M1 10H23" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M12 4V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
-              SOLOMON'S WEB
+              GOD'S WEB
             </A>
             <p class="text-xs mt-2 text-gray-300">EXPLORING SCRIPTURE WITH AI WISDOM</p>
           </div>

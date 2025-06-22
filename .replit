@@ -23,16 +23,41 @@ author = "agent"
 agentRequireRestartOnSave = false
 
 [[workflows.workflow.tasks]]
-task = "packager.installForAll"
-
-[[workflows.workflow.tasks]]
 task = "shell.exec"
-args = "npx vite --port 5000"
+args = "vinxi dev --port 5000"
 waitForPort = 5000
 
 [deployment]
-run = ["sh", "-c", "npx vite --port 5000"]
+run = ["sh", "-c", "vinxi dev --port 5000"]
 
 [[ports]]
 localPort = 5000
 externalPort = 80
+
+[[ports]]
+localPort = 35001
+externalPort = 5173
+
+[[ports]]
+localPort = 39297
+externalPort = 3000
+
+[[ports]]
+localPort = 41771
+externalPort = 3002
+
+[[ports]]
+localPort = 42491
+externalPort = 5000
+
+[[ports]]
+localPort = 42921
+externalPort = 4200
+
+[[ports]]
+localPort = 44443
+externalPort = 3003
+
+[[ports]]
+localPort = 46663
+externalPort = 3001
