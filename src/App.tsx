@@ -1,34 +1,33 @@
-import { Suspense } from 'solid-js';
-import { Routes, Route } from '@solidjs/router';
-import Navbar from './views/Navbar';
-import Footer from './views/Footer';
-import Home from './routes/index';
-import Topics from './routes/topics/index';
-import About from './routes/about/index';
-import Members from './routes/members/index';
-
 export default function App() {
   console.log('App component rendering...');
   
   return (
-    <div class="min-h-screen flex flex-col bg-cream">
-      <div class="bg-navy text-white p-4">
-        <h1 class="text-2xl font-bold">Solomon's Web - Bible Exploration</h1>
+    <div class="min-h-screen bg-cream p-8">
+      <div class="bg-navy text-white p-6 rounded-lg mb-6">
+        <h1 class="text-3xl font-bold">Solomon's Web - Bible Exploration</h1>
+        <p class="text-teal-light mt-2">Search for Bible verses and receive AI-powered theological insights</p>
       </div>
-      <main class="flex-grow container mx-auto px-4 py-6">
-        <div class="bg-white p-6 rounded-lg shadow-md">
-          <h2 class="text-xl font-semibold mb-4">Welcome to Solomon's Web</h2>
-          <p class="text-gray-700">Search for Bible verses and get AI-powered analysis.</p>
-          <Suspense fallback={<div class="text-center py-10">Loading...</div>}>
-            <Routes>
-              <Route path="/" component={Home} />
-              <Route path="/topics" component={Topics} />
-              <Route path="/about" component={About} />
-              <Route path="/members" component={Members} />
-            </Routes>
-          </Suspense>
+      
+      <div class="bg-white p-6 rounded-lg shadow-md">
+        <h2 class="text-2xl font-semibold text-navy mb-4">Search Bible Topics</h2>
+        <div class="space-y-4">
+          <input 
+            type="text" 
+            placeholder="Enter a biblical topic (e.g., faith, love, hope)"
+            class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal"
+          />
+          <button class="bg-teal text-white px-6 py-3 rounded-lg hover:bg-navy transition">
+            Search Verses
+          </button>
         </div>
-      </main>
+        
+        <div class="mt-6 p-4 bg-teal-light rounded-lg">
+          <p class="text-gray-700">
+            <strong>Note:</strong> This app uses OpenRouter API with Claude 3.5 Sonnet to provide 
+            authentic Bible verses and theological analysis. Enter any biblical topic to get started.
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
