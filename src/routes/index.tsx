@@ -1,57 +1,61 @@
 import { Show } from 'solid-js';
+import Navbar from '../views/Navbar';
+import Footer from '../views/Footer';
 import SearchBar from '../views/SearchBar';
+import TopicTags from '../views/TopicTags';
 import VerseList from '../views/VerseList';
 import AIAnalysis from '../views/AIAnalysis';
 import { HomeViewModel } from '../viewmodels/HomeViewModel';
 
 const Home = () => {
   const homeViewModel = new HomeViewModel();
-  // Optional: Call initialize if you implement it in the VM
-  // import { onMount } from 'solid-js';
-  // onMount(() => {
-  //   homeViewModel.initialize?.();
-  // });
+
+  const handleTopicSelect = (topic: string) => {
+    const currentTranslation = homeViewModel.searchVersion() || 'NIV';
+    homeViewModel.updateBibleTopic(topic, currentTranslation);
+  };
   
   return (
-      <div>
-          {/* Pass the ViewModel instance to SearchBar */}
-          <SearchBar homeViewModel={homeViewModel} />
-
-          {/* Show loading spinner based on ViewModel state */}
-          {/* Remember to CALL the accessor: homeViewModel.isLoading() */}
+    <div class="min-h-screen flex flex-col bg-cream font-national-park">
+      <Navbar />
+      <main class="flex-grow">
+        <div class="container mx-auto px-4 py-6">
+          <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h1 class="text-3xl font-bold text-navy mb-2">ASK ABOUT ANY BIBLE TOPIC</h1>
+            <SearchBar homeViewModel={homeViewModel} />
+            <TopicTags onSelectTopic={handleTopicSelect} />
+          </div>
+          
           <Show when={homeViewModel.isLoading()}>
-              <div class="flex justify-center py-8">
-                  <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal"></div>
-              </div>
+            <div class="flex justify-center py-8">
+              <div class="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal"></div>
+            </div>
           </Show>
 
-          {/* Show error message (Consider adding an error signal to ViewModel) */}
-          {/* <Show when={homeViewModel.error()}> ... </Show> */}
-
-          {/* Show "No verses found" message */}
           <Show when={!homeViewModel.isLoading() && homeViewModel.verses().length === 0 && homeViewModel.searchTopic()}>
-              <div class="text-center py-8 text-gray-600">
-                  <p>No verses found for "{homeViewModel.searchTopic()}". Try a different search term or check the AI response format.</p>
-              </div>
+            <div class="text-center py-8 text-gray-600">
+              <p>No verses found for "{homeViewModel.searchTopic()}". Try a different search term.</p>
+            </div>
           </Show>
 
-          {/* Show VerseList and AIAnalysis when verses are loaded */}
-          {/* Pass data directly from the ViewModel */}
           <Show when={!homeViewModel.isLoading() && homeViewModel.verses().length > 0}>
+            <div class="space-y-6">
               <VerseList
-                  verses={homeViewModel.verses()} // Pass the array of verses
-                  topic={homeViewModel.searchTopic()} // Pass the searched topic
-                  // translation={homeViewModel.searchVersion()} // Pass version if needed by VerseList
+                verses={homeViewModel.verses()}
+                topic={homeViewModel.searchTopic()}
               />
-
               <AIAnalysis
-                  verses={homeViewModel.verses()} // Pass verses array
-                  topic={homeViewModel.searchTopic()} // Pass searched topic
-                  translation={homeViewModel.searchVersion()} // Pass searched version
-                  generateGeminiAnalysis={homeViewModel.generateGeminiAnalysis}
+                verses={homeViewModel.verses()}
+                topic={homeViewModel.searchTopic()}
+                translation={homeViewModel.searchVersion()}
+                generateGeminiAnalysis={homeViewModel.generateGeminiAnalysis}
               />
+            </div>
           </Show>
-      </div>
+        </div>
+      </main>
+      <Footer />
+    </div>
   );
 }
 
