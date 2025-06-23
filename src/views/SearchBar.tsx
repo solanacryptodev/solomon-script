@@ -36,8 +36,8 @@ function SearchBar(props: SearchBarProps) {
           onChange={(e) => setLocalVersion(e.currentTarget.value)}
           class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal bg-white text-base min-w-[120px]"
         >
-          {translations.map((translation, index) => (
-            <option key={index} value={translation.id}>{translation.id}</option>
+          {translations.map((translation) => (
+            <option value={translation.id}>{translation.id}</option>
           ))}
         </select>
         <button
