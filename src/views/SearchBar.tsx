@@ -8,7 +8,7 @@ interface SearchBarProps {
 
 function SearchBar(props: SearchBarProps) {
   const [localTopic, setLocalTopic] = createSignal('');
-  const [localVersion, setLocalVersion] = createSignal('NIV');
+  const [localVersion, setLocalVersion] = createSignal('NLT');
 
   const handleSubmit = (e: Event) => {
     e.preventDefault();
@@ -31,6 +31,15 @@ function SearchBar(props: SearchBarProps) {
           onInput={(e) => setLocalTopic(e.currentTarget.value)}
           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal text-base"
         />
+        <select
+          value={localVersion()}
+          onChange={(e) => setLocalVersion(e.currentTarget.value)}
+          class="px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal bg-white text-base min-w-[120px]"
+        >
+          {translations.map(translation => (
+            <option value={translation.abbreviation}>{translation.abbreviation}</option>
+          ))}
+        </select>
         <button
           type="submit"
           class="px-6 py-3 bg-teal text-white rounded-lg hover:bg-teal-dark transition font-medium"
