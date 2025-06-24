@@ -38,6 +38,7 @@ export default function Home() {
           <VerseList
             verses={homeViewModel.verses()}
             topic={homeViewModel.searchTopic()}
+            translation={homeViewModel.searchVersion()}
           />
           <AIAnalysis
             verses={homeViewModel.verses()}

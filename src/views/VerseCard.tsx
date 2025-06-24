@@ -1,4 +1,5 @@
 import { HomeViewModel } from '../viewmodels/HomeViewModel';
+import { translations } from '../utils/interfaces';
 
 interface Verse {
   reference: string;
@@ -20,6 +21,11 @@ function VerseCard(props: VerseCardProps) {
     
     const regex = new RegExp(`(${topic})`, 'gi');
     return text.replace(regex, '<mark class="bg-yellow-200 px-1 rounded">$1</mark>');
+  };
+
+  const getFullTranslationName = (abbreviation: string) => {
+    const translation = translations.find(t => t.id === abbreviation);
+    return translation ? translation.name : abbreviation;
   };
 
   return (
@@ -45,7 +51,7 @@ function VerseCard(props: VerseCardProps) {
             Save
           </button>
         </div>
-        <span class="text-xs text-gray-400">{props.translation}</span>
+        <span class="text-xs text-gray-400">{getFullTranslationName(props.translation)}</span>
       </div>
     </div>
   );
