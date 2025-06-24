@@ -23,12 +23,18 @@ function App() {
   };
 
   return (
-    <div class="min-h-screen flex flex-col bg-cream font-national-park">
-      <Navbar setCurrentRoute={setCurrentRoute} currentRoute={currentRoute()} />
-      <main class="flex-grow">
-        {renderCurrentPage()}
+    <div class="h-screen flex flex-col bg-cream font-national-park">
+      <header class="sticky top-0 z-50 flex-shrink-0">
+        <Navbar setCurrentRoute={setCurrentRoute} currentRoute={currentRoute()} />
+      </header>
+      <main class="flex-1 overflow-y-auto">
+        <div class="min-h-full">
+          {renderCurrentPage()}
+        </div>
       </main>
-      <Footer />
+      <footer class="sticky bottom-0 z-50 flex-shrink-0">
+        <Footer />
+      </footer>
     </div>
   );
 }

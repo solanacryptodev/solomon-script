@@ -5,7 +5,7 @@ interface NavbarProps {
 
 function Navbar(props: NavbarProps) {
   return (
-    <nav class="bg-navy text-white py-4">
+    <nav class="bg-navy text-white py-4 shadow-lg">
       <div class="container mx-auto px-4 flex justify-between items-center">
         <button 
           onClick={() => props.setCurrentRoute('home')}
@@ -22,19 +22,19 @@ function Navbar(props: NavbarProps) {
         <div class="flex space-x-6 items-center">
           <button 
             onClick={() => props.setCurrentRoute('home')}
-            class={`hover:text-teal-light transition ${props.currentRoute === 'home' ? 'text-teal-light' : ''}`}
+            class={`hover:text-teal-light transition font-medium ${props.currentRoute === 'home' ? 'text-teal-light' : ''}`}
           >
             HOME
           </button>
           <button 
             onClick={() => props.setCurrentRoute('topics')}
-            class={`hover:text-teal-light transition ${props.currentRoute === 'topics' ? 'text-teal-light' : ''}`}
+            class={`hover:text-teal-light transition font-medium ${props.currentRoute === 'topics' ? 'text-teal-light' : ''}`}
           >
             TOPICS
           </button>
           <button 
             onClick={() => props.setCurrentRoute('about')}
-            class={`hover:text-teal-light transition ${props.currentRoute === 'about' ? 'text-teal-light' : ''}`}
+            class={`hover:text-teal-light transition font-medium ${props.currentRoute === 'about' ? 'text-teal-light' : ''}`}
           >
             ABOUT
           </button>

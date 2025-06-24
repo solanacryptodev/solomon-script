@@ -37,12 +37,11 @@ function Topics() {
             <h2 class="text-xl font-bold text-teal mb-4">{category.name}</h2>
             <div class="flex flex-wrap gap-2">
               {category.topics.map(topic => (
-                <a 
-                  href={`/?topic=${topic.toLowerCase()}`}
+                <button 
                   class="px-4 py-2 bg-teal-light text-teal rounded-md hover:bg-teal hover:text-white transition-colors"
                 >
                   {topic}
-                </a>
+                </button>
               ))}
             </div>
           </div>
