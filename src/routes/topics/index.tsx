@@ -25,7 +25,7 @@ function Topics() {
   ];
   
   return (
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl mx-auto p-8">
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-navy mb-2">Bible Topics</h1>
         <p class="text-gray-700">Explore these biblical topics to deepen your understanding of scripture.</p>

@@ -1,6 +1,6 @@
 function About() {
   return (
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl p-8 mx-auto">
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-navy mb-2">About Solomon's Web</h1>
         <p class="text-gray-700">Exploring scripture with wisdom and AI-powered insights.</p>

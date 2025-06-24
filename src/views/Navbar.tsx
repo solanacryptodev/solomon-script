@@ -38,6 +38,13 @@ export default function Navbar(props: NavbarProps) {
           >
             ABOUT
           </button>
+          <button 
+            onClick={() => props.setCurrentRoute('members')}
+            class={`hover:text-teal-light transition bg-teal p-2 rounded-lg font-medium 
+            ${props.currentRoute === 'members' ? 'text-teal-light' : ''}`}
+          >
+            MEMBERS
+          </button>
         </div>
       </div>
     </nav>

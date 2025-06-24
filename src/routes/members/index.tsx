@@ -1,6 +1,6 @@
 function Members() {
   return (
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-4xl p-8 mx-auto">
       <div class="mb-8">
         <h1 class="text-3xl font-bold text-navy mb-2">Members</h1>
         <p class="text-gray-700">Member features coming soon.</p>
