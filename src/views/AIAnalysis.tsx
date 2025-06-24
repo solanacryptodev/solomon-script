@@ -46,8 +46,8 @@ const AIAnalysis: Component<AIAnalysisProps> = (props) => {
 
                  {/* Header Section */}
                  <div class="bg-gradient-to-b from-navy to-[#2E3B63] p-4"> 
-                     <h2 class="text-white text-xl font-bold mb-1">BIBLICAL ANALYSIS</h2>
-                     <p class="text-white text-md">{`GOOGLE GEMINI'S INTERPRETATION OF THESE VERSES BASED ON THE ${props.translation}`}</p> 
+                     <h2 class="text-white text-xl font-bold mb-1">AI BIBLICAL ANALYSIS</h2>
+                     <p class="text-white text-md">{`GEMMA'S INTERPRETATION OF THESE VERSES BASED ON THE ${props.translation}`}</p> 
                  </div>
 
                  {/* Content Area Wrapper */}

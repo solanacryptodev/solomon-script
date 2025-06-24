@@ -18,6 +18,7 @@ function SearchBar(props: SearchBarProps) {
     if (topic) {
       console.log('Submitting search:', { topic, version });
       props.homeViewModel.updateBibleTopic(topic, version);
+      console.log('translation:', version)
     }
   };
 
@@ -26,7 +27,7 @@ function SearchBar(props: SearchBarProps) {
       <div class="flex gap-2">
         <input
           type="text"
-          placeholder="e.g. trust, faith, Ezekiel's wheel..."
+          placeholder="e.g. Trust, Faith, Holy Spirit..."
           value={localTopic()}
           onInput={(e) => setLocalTopic(e.currentTarget.value)}
           class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-teal text-base"

@@ -54,7 +54,7 @@ export interface AIAnalysisProps {
 export interface VerseListProps {
     verses: ParsedVerse[]; // Expecting the array directly
     topic: string;
-    // translation?: string; // Add if needed
+    translation: string;
 }
 
   // Available Bible translations

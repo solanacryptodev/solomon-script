@@ -1,3 +1,5 @@
+import { HomeViewModel } from '../viewmodels/HomeViewModel';
+
 interface Verse {
   reference: string;
   text: string;
@@ -5,10 +7,14 @@ interface Verse {
 
 interface VerseCardProps {
   verse: Verse;
+  translation: string;
   topic?: string;
 }
 
 function VerseCard(props: VerseCardProps) {
+  const homeViewModel = new HomeViewModel();
+  console.log('version in verse card component:', homeViewModel.searchVersion())
+  
   const highlightTopic = (text: string, topic: string) => {
     if (!topic) return text;
     
@@ -39,7 +45,7 @@ function VerseCard(props: VerseCardProps) {
             Save
           </button>
         </div>
-        <span class="text-xs text-gray-400">NIV</span>
+        <span class="text-xs text-gray-400">{props.translation}</span>
       </div>
     </div>
   );

@@ -80,6 +80,7 @@ export class HomeViewModel implements IHomeViewModel {
         this._setVerses([]); // Clear previous verses immediately
         this._setSearchTopic(newBibleTopic);
         this._setSearchVersion(selectedBibleVersion);
+        console.log('VM: Searching for translation:', this.searchVersion());
 
         try {
             // Use the Bible API service to search for verses
@@ -98,6 +99,7 @@ export class HomeViewModel implements IHomeViewModel {
             console.log(`VM: Found ${parsedVerses.length} verses for topic "${newBibleTopic}"`);
             this._setVerses(parsedVerses);
             console.log('Parsed verse:', parsedVerses)
+            console.log('VM: Searching for translation 2:', this.searchVersion());
 
         } catch (error) {
             console.error("VM: Error fetching verses:", error);
