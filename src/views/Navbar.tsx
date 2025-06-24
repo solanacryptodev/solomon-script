@@ -1,9 +1,9 @@
-interface NavbarProps {
+export interface NavbarProps {
   setCurrentRoute: (route: string) => void;
   currentRoute: string;
 }
 
-function Navbar(props: NavbarProps) {
+export default function Navbar(props: NavbarProps) {
   return (
     <nav class="bg-navy text-white py-4 shadow-lg">
       <div class="container mx-auto px-4 flex justify-between items-center">
@@ -43,5 +43,3 @@ function Navbar(props: NavbarProps) {
     </nav>
   );
 }
-
-export default Navbar;
