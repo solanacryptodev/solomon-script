@@ -44,14 +44,14 @@ function VerseCard(props: VerseCardProps) {
       
       <div class="mt-4 flex justify-between items-center">
         <div class="flex space-x-2">
-          <button class="text-xs text-gray-500 hover:text-teal transition">
+          <button class="text-sm text-gray-500 hover:text-teal transition">
             Share
           </button>
-          <button class="text-xs text-gray-500 hover:text-teal transition">
+          <button class="text-sm text-gray-500 hover:text-teal transition">
             Save
           </button>
         </div>
-        <span class="text-xs text-gray-400">{getFullTranslationName(props.translation)}</span>
+        <span class="text-sm text-gray-400">{getFullTranslationName(props.translation)}</span>
       </div>
     </div>
   );
